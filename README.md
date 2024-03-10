@@ -1,2 +1,2 @@
 # pizza-app
-Pizza ordering app with react native
+Pizza ordering app using React Native
