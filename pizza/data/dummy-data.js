@@ -1,5 +1,5 @@
 import Category from '../models/category';
-import Pizza from '../models/food';
+import Pizza from '../models/pizza';
 
 export const CATEGORIES = [
   new Category('c1', 'Kampanyalar', 'pink'),
