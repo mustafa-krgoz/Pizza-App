@@ -3,11 +3,18 @@ import React from 'react'
 import { CATEGORIES } from '../data/dummy-data'
 import CategoryGrid from '../components/CategoryGrid';
 
-export default function CategoriesScreen() {
+export default function CategoriesScreen({navigation}) {
     
     function renderCategoryItem(itemData) {
+
+        function pressHandler(){
+          navigation.navigate('PizzaOverview');
+        }
+
         console.log(itemData.item); // Obje içerisinde item var. Item indekslerine ulaşabiliyoruz.
-        return (<CategoryGrid title={itemData.item.title} color={itemData.item.color}/>); // props olarak title ve color'ı yollamış olduk.
+        return (
+        <CategoryGrid title={itemData.item.title} color={itemData.item.color} pressPizza={pressHandler} />
+        ); // props olarak title ve color'ı yollamış olduk.
     }
 
   return (
