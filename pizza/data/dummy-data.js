@@ -4,8 +4,8 @@ import Pizza from '../models/pizza';
 export const CATEGORIES = [
   new Category('c1', 'Kampanyalar', 'pink'),
   new Category('c2', 'Pizzalar', 'orange'),
-  new Category('c4', 'Yan Ürünler', 'yellow'),
-  new Category('c5', 'İçecekler', 'blue'),
+  new Category('c3', 'Yan Ürünler', 'yellow'),
+  new Category('c4', 'İçecekler', 'blue'),
 ];
 
 export const Pizzalar = [

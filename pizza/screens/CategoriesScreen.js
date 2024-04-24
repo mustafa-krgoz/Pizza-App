@@ -8,7 +8,9 @@ export default function CategoriesScreen({navigation}) {
     function renderCategoryItem(itemData) {
 
         function pressHandler(){
-          navigation.navigate('PizzaOverview');
+          navigation.navigate('PizzaOverview', {
+            categoryId: itemData.item.id,
+          });
         }
 
         console.log(itemData.item); // Obje içerisinde item var. Item indekslerine ulaşabiliyoruz.
