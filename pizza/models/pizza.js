@@ -6,7 +6,7 @@ class Pizza {
         affordability,
         complexity,
         imageUrl,
-        ingerdients, //içindekiler
+        ingerdients //içindekiler
 
     ) {
         this.id= id;
@@ -15,7 +15,7 @@ class Pizza {
         this.affordability = affordability,
         this.complexity = complexity,
         this.imageUrl = imageUrl,
-        this.ingerdients
+        this.ingerdients = ingerdients;
         
     }
 }
