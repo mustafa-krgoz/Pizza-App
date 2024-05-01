@@ -1,15 +1,25 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
 import React from 'react'
-import { Pizzalar } from '../data/dummy-data';
+import { Pizzalar, CATEGORIES } from '../data/dummy-data';
 import PizzaItem from '../components/PizzaItem';
+import { useLayoutEffect } from 'react';
 
-export default function PizzaOverviewScreen({route}) { // distraction işlemi
+export default function PizzaOverviewScreen({route, navigation}) { // distraction işlemi
    
     const categoryId = route.params.categoryId
     const displayedPizzas = Pizzalar.filter((pizzaItem) => {
        return pizzaItem.categoryIds.indexOf(categoryId) >= 0; 
     })
 
+  useLayoutEffect(()=>{
+      const categoryTitle=CATEGORIES.find((category)=> 
+        category.id === categoryId).title
+
+        navigation.setOptions({
+          title:categoryTitle,
+    });
+  }, [navigation, categoryId])
+    
     //console.log(displayedPizzas);
     
   function renderPizzaItem(itemData){
