@@ -24,7 +24,10 @@ export default function App() {
           title: "Kategoriler"
         }} />
         <Stack.Screen name="PizzaOverview" component={PizzaOverviewScreen} />
-        <Stack.Screen name="FoodDetail" component={FoodDetailScreen} />
+        <Stack.Screen name="FoodDetail" component={FoodDetailScreen}  
+        options={{
+          title: "İçerik"
+        }}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

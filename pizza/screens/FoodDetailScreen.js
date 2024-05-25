@@ -1,13 +1,32 @@
-import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image, Pressable } from 'react-native';
 import React from 'react';
-
+import { useLayoutEffect } from 'react';
 import { Pizzalar } from '../data/dummy-data';
 import FoodIngredients from '../components/FoodIngredients';
+import { FontAwesome } from '@expo/vector-icons';
 
-export default function FoodDetailScreen({ route }) {
+export default function FoodDetailScreen({ route, navigation }) {
   const foodId = route.params.foodId;
   const selectedFood = Pizzalar.find((food) => food.id === foodId);
   console.log(selectedFood);
+
+  const pressHandler = () =>{
+    console.log('Tıklandı!');
+  };
+
+  useLayoutEffect(() => {
+    
+      navigation.setOptions({
+        headerRight:() => {
+          return (
+            <Pressable onPress={pressHandler} style={({pressed})=>(pressed ? styles.
+            pressed : null)}>
+              <FontAwesome name="star-o" size={24} color="white" />
+            </Pressable>
+          );
+        },
+      });
+  }, [navigation]);
 
   return (
     <ScrollView style={styles.rootContainer}>
@@ -69,4 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  pressed: {
+    opacity: 0.5,
+  }
 });
