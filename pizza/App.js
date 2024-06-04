@@ -8,15 +8,37 @@ import FoodDetailScreen from './screens/FoodDetailScreen';
 import 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import FavoritesScreen from './screens/FavoritesScreen';
+import { FontAwesome } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Categories" component={CategoriesScreen} />
-      <Drawer.Screen name="Favorites" component={FavoritesScreen} />
+    <Drawer.Navigator screenOptions={{
+      headerStyle:{backgroundColor: 'orange'},
+      headerTintColor: 'white',
+    }}>
+      <Drawer.Screen 
+      name="Categories" 
+      component={CategoriesScreen} 
+      options={{
+        title: 'Kategoriler',
+        drawerIcon:()=>(
+          <FontAwesome name="list" size={24} color="black" />
+        )
+      }}
+      />
+      <Drawer.Screen 
+      name="Favorites" 
+      component={FavoritesScreen} 
+      options={{
+        title: 'Favoriler',
+        drawerIcon:()=>(
+          <FontAwesome name="star-o" size={24} color="black" />
+        )
+      }}
+      />
     </Drawer.Navigator>
   );
 }
@@ -34,7 +56,7 @@ export default function App() {
         name="Drawer" 
         component={DrawerNavigator}
         options={{
-          title: "Kategoriler"
+          headerShown: false,
         }} />
         <Stack.Screen name="PizzaOverview" component={PizzaOverviewScreen} />
         <Stack.Screen name="FoodDetail" component={FoodDetailScreen}  
