@@ -9,6 +9,7 @@ import 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import FavoritesScreen from './screens/FavoritesScreen';
 import { FontAwesome } from '@expo/vector-icons';
+import FavoritesContextProvider from './store/favoritescontext';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -46,6 +47,7 @@ function DrawerNavigator() {
 export default function App() {
   return(
     <NavigationContainer>
+      <FavoritesContextProvider>
       <Stack.Navigator
       screenOptions={{
         headerStyle: {backgroundColor: 'orange'},
@@ -64,6 +66,7 @@ export default function App() {
           title: "İçerik"
         }}/>
       </Stack.Navigator>
+      </FavoritesContextProvider>
     </NavigationContainer>
   )
 }
