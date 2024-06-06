@@ -1,18 +1,32 @@
 import { StyleSheet, Text, View, ScrollView, Image, Pressable } from 'react-native';
 import React from 'react';
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useContext} from 'react';
 import { Pizzalar } from '../data/dummy-data';
 import FoodIngredients from '../components/FoodIngredients';
 import { FontAwesome } from '@expo/vector-icons';
+import { FavoritesContext } from '../store/favoritescontext';
 
 export default function FoodDetailScreen({ route, navigation }) {
+  const favoriteFoodContext=useContext(FavoritesContext)
   const foodId = route.params.foodId;
   const selectedFood = Pizzalar.find((food) => food.id === foodId);
   console.log(selectedFood);
 
+  const foodIsFavorite=favoriteFoodContext.ids.includes
+  (foodId);
+
   const pressHandler = () =>{
     console.log('Tıklandı!');
   };
+
+  function changeFavorite () {
+    if (foodIsFavorite){
+      favoriteFoodContext.removeFavorite(foodId)
+    }
+    else {
+      favoriteFoodContext.addFavorite(foodId)
+    }
+  }
 
   useLayoutEffect(() => {
     
@@ -21,12 +35,17 @@ export default function FoodDetailScreen({ route, navigation }) {
           return (
             <Pressable onPress={pressHandler} style={({pressed})=>(pressed ? styles.
             pressed : null)}>
-              <FontAwesome name="star-o" size={24} color="white" />
+              <FontAwesome 
+              name={foodIsFavorite ? 'star' : 'star-o'} 
+              size={24} 
+              color="white" 
+              onPress={changeFavorite}
+              />
             </Pressable>
           );
         },
       });
-  }, [navigation]);
+  }, [navigation, changeFavorite]);
 
   return (
     <ScrollView style={styles.rootContainer}>
