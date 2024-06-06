@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import CategoriesScreen from './screens/CategoriesScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import PizzaOverviewScreen from './screens/PizzaOverviewScreen';
+import FoodOverviewScreen from './screens/FoodOverviewScreen';
 import FoodDetailScreen from './screens/FoodDetailScreen';
 import 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -60,7 +60,7 @@ export default function App() {
         options={{
           headerShown: false,
         }} />
-        <Stack.Screen name="PizzaOverview" component={PizzaOverviewScreen} />
+        <Stack.Screen name="FoodOverview" component={FoodOverviewScreen} />
         <Stack.Screen name="FoodDetail" component={FoodDetailScreen}  
         options={{
           title: "İçerik"

@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-export default function PizzaItem({
+export default function FoodItem({
   id,
   title,
   imageUrl,
@@ -18,7 +18,7 @@ export default function PizzaItem({
   };
 
   return (
-    <View style={styles.pizzaItem}>
+    <View style={styles.foodItem}>
       <Pressable
         style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
         onPress={FoodItemHandler}

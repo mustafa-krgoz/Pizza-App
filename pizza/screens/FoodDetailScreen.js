@@ -7,7 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { FavoritesContext } from '../store/favoritescontext';
 
 export default function FoodDetailScreen({ route, navigation }) {
-  const favoriteFoodContext=useContext(FavoritesContext)
+  const favoriteFoodContext=useContext(FavoritesContext);
   const foodId = route.params.foodId;
   const selectedFood = Pizzalar.find((food) => food.id === foodId);
   console.log(selectedFood);

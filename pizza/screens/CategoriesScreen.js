@@ -8,7 +8,7 @@ export default function CategoriesScreen({navigation}) {
     function renderCategoryItem(itemData) {
 
         function pressHandler(){
-          navigation.navigate('PizzaOverview', {
+          navigation.navigate('FoodOverview', {
             categoryId: itemData.item.id,
           });
         }
