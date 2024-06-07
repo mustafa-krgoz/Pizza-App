@@ -1,26 +1,51 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native';
-import React, {useState} from 'react';
-import { TextInput } from 'react-native';
-import { TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { auth } from '../firebase'; // Firebase yapılandırma dosyasını içe aktarın
 
-export default function LoginScreen() {
-  const [emial, setEmail ] = useState('');
-  const[password, setPassword ] = useState('');
+export default function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignUp = () => {
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Kullanıcı', user.email);
+      })
+      .catch(error => Alert.alert('Kayıt Hatası', error.message));
+  };
+
+  const handleLogin = () => {
+    auth.signInWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        navigation.navigate('Home');
+      })
+      .catch(error => Alert.alert('Giriş Hatası', error.message));
+  };
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Email"  
-        value={emial}
-        onChangeText={text => setEmail(text)}/>
-        <TextInput style={styles.input} placeholder="Şifre" secureTextEntry 
-        value={password}
-        onChangeText={text => setPassword(text)}/>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={text => setEmail(text)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Şifre"
+          secureTextEntry
+          value={password}
+          onChangeText={text => setPassword(text)}
+        />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Giriş Yap</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.outlineButton]}>
+        <TouchableOpacity onPress={handleSignUp} style={[styles.button, styles.outlineButton]}>
           <Text style={styles.outlineButtonText}>Kayıt Ol</Text>
         </TouchableOpacity>
       </View>
