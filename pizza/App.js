@@ -10,6 +10,10 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import FavoritesScreen from './screens/FavoritesScreen';
 import { FontAwesome } from '@expo/vector-icons';
 import FavoritesContextProvider from './store/favoritescontext';
+import LoginScreen from './screens/LoginScreen';
+import HomeScreen from './screens/HomeScreen';
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -21,6 +25,17 @@ function DrawerNavigator() {
       headerTintColor: 'white',
     }}>
       <Drawer.Screen 
+      name="MainMenu" 
+      component={HomeScreen} 
+      options={{
+        title: 'AnaMenü',
+        drawerIcon:()=>(
+          <AntDesign name="menuunfold" size={24} color="black" />
+        )
+      }}
+      />
+
+      <Drawer.Screen 
       name="Categories" 
       component={CategoriesScreen} 
       options={{
@@ -30,6 +45,7 @@ function DrawerNavigator() {
         )
       }}
       />
+     
       <Drawer.Screen 
       name="Favorites" 
       component={FavoritesScreen} 
@@ -37,6 +53,17 @@ function DrawerNavigator() {
         title: 'Favoriler',
         drawerIcon:()=>(
           <FontAwesome name="star-o" size={24} color="black" />
+        )
+      }}
+      />
+      
+       <Drawer.Screen 
+      name="Login" 
+      component={LoginScreen} 
+      options={{
+        title: 'Giriş',
+        drawerIcon:()=>(
+          <Ionicons name="person" size={24} color="black" />
         )
       }}
       />
@@ -60,6 +87,7 @@ export default function App() {
         options={{
           headerShown: false,
         }} />
+        <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="FoodOverview" component={FoodOverviewScreen} />
         <Stack.Screen name="FoodDetail" component={FoodDetailScreen}  
         options={{
