@@ -1,10 +1,20 @@
 import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Alert } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { auth } from '../firebase'; // Firebase yapılandırma dosyasını içe aktarın
+import { useNavigation } from '@react-navigation/native';
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigation=useNavigation();
+  useEffect(()=>{
+    auth.onAuthStateChanged(user => {
+      if(user) {
+          navigation.navigate('Categories');
+      }
+    });
+  }, []);
 
   const handleSignUp = () => {
     auth.createUserWithEmailAndPassword(email, password)
@@ -17,9 +27,9 @@ export default function LoginScreen({ navigation }) {
 
   const handleLogin = () => {
     auth.signInWithEmailAndPassword(email, password)
-      .then(userCredentials => {
+      .then((userCredentials) => {
         const user = userCredentials.user;
-        navigation.navigate('Home');
+        console.log('Kullanıcı giriş yaptı', user.email)
       })
       .catch(error => Alert.alert('Giriş Hatası', error.message));
   };

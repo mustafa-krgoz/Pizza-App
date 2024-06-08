@@ -11,7 +11,6 @@ import FavoritesScreen from './screens/FavoritesScreen';
 import { FontAwesome } from '@expo/vector-icons';
 import FavoritesContextProvider from './store/favoritescontext';
 import LoginScreen from './screens/LoginScreen';
-import HomeScreen from './screens/HomeScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -24,13 +23,14 @@ function DrawerNavigator() {
       headerStyle:{backgroundColor: 'orange'},
       headerTintColor: 'white',
     }}>
-      <Drawer.Screen 
-      name="MainMenu" 
-      component={HomeScreen} 
+
+     <Drawer.Screen 
+      name="Login" 
+      component={LoginScreen} 
       options={{
-        title: 'AnaMenü',
+        title: 'Giriş',
         drawerIcon:()=>(
-          <AntDesign name="menuunfold" size={24} color="black" />
+          <Ionicons name="person" size={24} color="black" />
         )
       }}
       />
@@ -57,16 +57,6 @@ function DrawerNavigator() {
       }}
       />
       
-       <Drawer.Screen 
-      name="Login" 
-      component={LoginScreen} 
-      options={{
-        title: 'Giriş',
-        drawerIcon:()=>(
-          <Ionicons name="person" size={24} color="black" />
-        )
-      }}
-      />
     </Drawer.Navigator>
   );
 }
